@@ -5,9 +5,8 @@ import Registro from "./Registro";
 import Consejo from "./Consejo";
 import Bienvenida from "./Bienvenida";
 import PosturaMontana from "./PosturaMontana";
-import Rana from "./Rana";
 import Recompensa from "./Recompensa";
-import FormularioEjercicio from "./FormularioEjercicio"; // <-- Importa el formulario
+
 
 function App() {
   return (
@@ -18,9 +17,7 @@ function App() {
       <Route path="/consejo" element={<Consejo />} />
       <Route path="/bienvenida" element={<Bienvenida />} />
       <Route path="/posturamontana" element={<PosturaMontana />} />
-      <Route path="/rana" element={<Rana />} />
-      <Route path="/recompensa" element={<Recompensa />} />
-      <Route path="/nuevo-ejercicio" element={<FormularioEjercicio />} /> {/* Nueva ruta */}
+      <Route path="/recompensa" element={<Recompensa />} />  
     </Routes>
   );
 }
