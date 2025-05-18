@@ -11,42 +11,42 @@ function Register() {
   const [mostrarConfirmPassword, setMostrarConfirmPassword] = useState(false); // 👁 Confirmación
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (password !== confirmPassword) {
-      alert('Las contraseñas no coinciden');
-      return;
+  if (password !== confirmPassword) {
+    alert('Las contraseñas no coinciden');
+    return;
+  }
+
+  try {
+    const response = await fetch('https://ejerciciosninos-proyecto-backend.onrender.com/api/usuarios', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        password
+      }),
+    });
+
+    if (response.ok) {
+      alert('✅ Registro exitoso');
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+    } else {
+      const data = await response.json();
+      alert('❌ Error al registrar: ' + data.message);
     }
-
-    try {
-      const response = await fetch('http://localhost:3000/api/usuarios', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          password
-        }),
-      });
-
-      if (response.ok) {
-        alert('✅ Registro exitoso');
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
-      } else {
-        const data = await response.json();
-        alert('❌ Error al registrar: ' + data.message);
-      }
-    } catch (error) {
-      alert('❌ Error de conexión con el servidor: ' + error.message);
-    }
-  };
+  } catch (error) {
+    alert('❌ Error de conexión con el servidor: ' + error.message);
+  }
+};
 
   return (
     <div className="contenedor" style={styles.container}>
