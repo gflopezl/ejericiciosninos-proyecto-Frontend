@@ -1,4 +1,9 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
 export default defineConfig({
-  base: '/', // ✅ Esto debe ser '/' para Netlify
   plugins: [react()],
+  server: {
+    port: 3000,
+  },
 });
